@@ -29,7 +29,7 @@ export const ListaCandidatos =
           {
             id: 21,
             img:"https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGdlbnRlJTIwb2ZpY2luYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-            nombre: "Luis Alberto Rodriguez",
+            nombre: "Luis Rodriguez",
             partido: "Partido Renovador"
           },
           {

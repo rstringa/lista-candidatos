@@ -1,0 +1,14 @@
+.custom-slider {
+    height: 540px;
+    transition: all 1s;
+    opacity: 1;
+}
+.custom-slider.is--invisible  {
+        overflow: hidden;
+        opacity: 0;
+        height: 1px;
+        transition: all 1s;
+}
+.custom-slider.slider-final {
+    height: 100px;
+}
