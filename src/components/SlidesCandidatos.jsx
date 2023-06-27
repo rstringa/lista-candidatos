@@ -35,7 +35,7 @@ const SlidesCandidatos = ({ instancia, handleVotar, votacion, setVotacion, lista
                             {item.candidatos.map((candidato) => (
                                 <li 
                                 key={candidato.id}
-                                className='shadow-xl rounded-xl'
+                                className='shadow-xl rounded-xl bg-white'
                                 >
                                     {candidato.img ?
                                         <img
@@ -60,9 +60,9 @@ const SlidesCandidatos = ({ instancia, handleVotar, votacion, setVotacion, lista
                
 
             ))}
-            <div key={4} className='box-slider'>
+            {/* <div key={4} className='box-slider'>
                 <h1 className='text-center text-4xl text-slate-700'>Gracias. Tu votación ha sido enviada.</h1>
-            </div>
+            </div> */}
         </Slider>
     );
 };

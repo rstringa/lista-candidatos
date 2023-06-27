@@ -2,12 +2,14 @@ import { useState, useRef } from 'react';
 import SlidesCandidatos from './components/SlidesCandidatos';
 import { ListaCandidatos } from './data/dataCandidatos';
 import Header from './components/Header';
-import './App.css';
+// import './App.css';
 
 function App() {
   const [votacion, setVotacion] = useState([]);
   const [instancia, setInstancia] = useState(1);
   const [botonesHabilitados, setBotonesHabilitados] = useState(true);
+  const [mensajeFinal, setMensajeFinal] = useState(false);
+  const [boxFinalButtons, setBoxFinalButtons] = useState(true);
   const sliderRef = useRef(null);
 
   function handleVotar(instancia, candidatoId) {
@@ -40,10 +42,11 @@ function App() {
   function handleConfirmarVotacion() {
     setBotonesHabilitados(false);
     setTimeout(function () {
-      setInstancia(instancia + 1);
-      sliderRef.current.slickGoTo(instancia - 1);
-    }, 1000);
-    console.log(votacion)
+      // setInstancia(instancia + 1);
+      // sliderRef.current.slickGoTo(instancia - 1);
+      setMensajeFinal(true)
+      setBoxFinalButtons(false)
+    }, 200);
   }
 
   function handleVolver(instancia) {
@@ -56,8 +59,8 @@ function App() {
   return (
     <>
       <Header />
-      <div className='container w-full max-w-6xl mx-auto'>
-        <div className='box-volver mx-5 mt-2 h-[40px]'>
+      <div className='container w-full max-w-6xl mx-auto mb-12 pb-12'>
+        <div className='box-volver mx-5 mt-5 h-[40px]'>
           {instancia > 1 && instancia <= 3 && (
 
             <a
@@ -89,41 +92,55 @@ function App() {
           sliderRef={sliderRef} // Pasar el ref del slider como prop
         />
 
-        {instancia >= 2 && (
+        {/* {instancia >= 2 && ( */}
           <>
-            <h2 className='titulo-final mt-20'>Votación {instancia <= 3 ? "parcial" : "final"}</h2>
+            <h2 className={`${instancia <= 3 ? "mt-20" : "mt-0"} titulo`}>Votación {instancia <= 3 ? "parcial" : "final"}</h2>
             <ul className='grid grid-cols-3 gap-7 mx-5'>
               {votacion.map((voto, index) => (
                 <li
-                  className='shadow-xl rounded-xl'
+                  className='shadow-xl rounded-xl bg-slate-300'
                   key={index}>
                   {voto.candidatoImg ?
                     <img
-                      className='shadow-sm rounded-t-xl aspect-square object-cover'
+                      className='shadow-sm rounded-t-xl aspect-square  object-cover max-h-[250px]'
                       src={voto.candidatoImg}
                       alt={voto.candidatoNombre}
                       loading="lazy"
                       width={400} />
                     : <div className="no-image"></div>
                   }
-                  <div className='body text-center p-5'>
-                    <h2 className='text-xl font-normal mb-5  bg-slate-200 rounded-full text-slate-500'>{voto.candidatoCargo}</h2>
-                    <h3 className='text-3xl font-bold mb-1 text-slate-800'>{voto.candidatoNombre}</h3>
-                    <p className='text-xl font-normal text-slate-800'>{voto.candidatoPartido}</p>
+                  <div className='body text-center px-5 py-7'>
+                    <h2 className='text-xl font-normal mb-5  bg-slate-200 rounded-full text-slate-700'>{voto.candidatoCargo}</h2>
+                    <h3 className='text-2xl font-bold mb-1 text-slate-800'>{voto.candidatoNombre}</h3>
+                    <p className='text-[18px] font-normal text-slate-800'>{voto.candidatoPartido}</p>
                   </div>
                 </li>
               ))}
             </ul>
-            <button onClick={handleCambiarVotacion} disabled={!botonesHabilitados}>
-              Cambiar Votación
-            </button>
-            {instancia >= 4 && (
-              <button onClick={handleConfirmarVotacion} disabled={!botonesHabilitados}>
-                Confirmar Votación
+            {boxFinalButtons && (
+            <div className='box-final-buttons text-center'>
+              <button
+                className='btn btn-secondary btn-big mt-16 mx-5'
+                onClick={handleCambiarVotacion} disabled={!botonesHabilitados}>
+                Cambiar Votación
               </button>
+              {instancia >= 4 && (
+                <button
+                  className='btn btn-big mt-9 mx-5'
+                  onClick={handleConfirmarVotacion} disabled={!botonesHabilitados}>
+                  Confirmar Votación
+                </button>
+              )}
+            </div>
             )}
+            { mensajeFinal && (
+              <div className='box-thanks px-5 py-16'>
+                <h3 className='text-center text-4xl text-slate-700'>Gracias. Tu votación ha sido enviada.</h3>
+              </div>
+            )
+            }
           </>
-        )}
+        {/* )} */}
       </div>
     </>
   );
