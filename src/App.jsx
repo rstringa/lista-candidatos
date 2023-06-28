@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import SlidesCandidatos from './components/SlidesCandidatos';
 import { ListaCandidatos } from './data/dataCandidatos';
 import Header from './components/Header';
+import Footer from './components/Footer';
 // import './App.css';
 
 function App() {
@@ -73,7 +74,7 @@ function App() {
               title='Volver al paso anterior'
             >
               <svg
-                className='h-[18px]'
+                className='h-[18px] -ml-1 mr-1'
                 width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="rgb(71 85 105 / var(--tw-text-opacity))" fill="none" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 12H3m0 0l8.5-8.5M3 12l8.5 8.5" fill="none"></path>
               </svg>
@@ -136,7 +137,7 @@ function App() {
             {boxFinalButtons && (
             <div className='box-final-buttons text-center'>
               <button
-                className='btn btn-secondary btn-big mt-16 mx-5'
+                className='btn btn-secondary btn-big font-bold mt-16 mx-5 bg-white'
                 onClick={handleCambiarVotacion} disabled={!botonesHabilitados}>
                 Cambiar Votación
               </button>
@@ -158,6 +159,7 @@ function App() {
           </>
         {/* )} */}
       </div>
+      <Footer />
     </>
   );
 }

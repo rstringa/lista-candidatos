@@ -10,12 +10,13 @@
     }
     .btn.btn-secondary {
         @apply
-        font-normal bg-slate-100 text-slate-600 text-base
+        font-normal bg-slate-100 text-slate-600 text-base border border-solid border-slate-200
         hover:shadow-md 
     }
     .btn.btn-big {
         @apply
         py-5
+        rounded-xl
     } 
     .titulo {
         @apply
