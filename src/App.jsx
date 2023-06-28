@@ -1,9 +1,10 @@
 import React from 'react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import SlidesCandidatos from './components/SlidesCandidatos';
 import { ListaCandidatos } from './data/dataCandidatos';
-import {Header} from './components/Header';
+import { Header } from './components/Header';
 import Footer from './components/Footer';
+import BarraLateral from './components/BarraLateral';
 import './App.css';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
     setBotonesHabilitados(true);
   }
 
+
   function handleCambiarVotacion() {
     sliderRef.current.slickGoTo(0);
     setInstancia(1);
@@ -56,7 +58,7 @@ function App() {
     setBoxFinalButtons(true);
     console.log(headerRef)
     if (headerRef.current) {
-      
+
       headerRef.current.scrollIntoView({
         behavior: 'smooth', // Habilita el desplazamiento animado
         block: 'start' // Desplázate hacia la parte superior del elemento
@@ -65,7 +67,6 @@ function App() {
   }
 
   function handleConfirmarVotacion() {
-    setBotonesHabilitados(false);
     setMensajeFinal(true)
     setBoxFinalButtons(false)
     setTimeout(function () {
@@ -73,6 +74,7 @@ function App() {
     }, 500);
   }
 
+  // Boton de Volver
   function handleVolver(instancia) {
     setInstancia(instancia)
     sliderRef.current.slickGoTo(instancia - 1)
@@ -80,9 +82,18 @@ function App() {
 
   }
 
+  // Habilitar Boton de "Cambiar Votacion"
+  useEffect(() => {
+    if (instancia <= 1) {
+      setBotonesHabilitados(false);
+    } else {
+      setBotonesHabilitados(true);
+    }
+  }, [instancia]);
+
   return (
     <>
-      <Header ref={headerRef}/>
+      <Header ref={headerRef} />
       <div className='container w-full max-w-6xl mx-auto pb-24'>
         <div className='box-volver mx-5 mt-5 h-[40px]'>
           {instancia > 1 && instancia <= 3 && (
@@ -159,19 +170,17 @@ function App() {
           </ul>
           {boxFinalButtons && (
 
-
             <div className='box-final-buttons text-center'>
-              {instancia > 1 && (
-                <button
-                  className='btn btn-secondary btn-big font-bold mt-12 mx-5 bg-white'
-                  onClick={handleCambiarVotacion} disabled={!botonesHabilitados}>
-                  Cambiar Votación
-                </button>
-              )}
+
+              <button
+                className='btn btn-secondary btn-big font-bold mt-12 mx-5 bg-white'
+                onClick={handleCambiarVotacion} disabled={!botonesHabilitados}>
+                Cambiar Votación
+              </button>
               {instancia >= 4 && (
                 <button
                   className='btn btn-big mt-9 mx-5'
-                  onClick={handleConfirmarVotacion} disabled={!botonesHabilitados}>
+                  onClick={handleConfirmarVotacion} >
                   Confirmar Votación
                 </button>
               )}
@@ -192,6 +201,7 @@ function App() {
         </>
         {/* )} */}
       </div>
+      <BarraLateral />
       <Footer />
     </>
   );
