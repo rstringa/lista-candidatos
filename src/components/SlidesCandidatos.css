@@ -12,3 +12,19 @@
 .custom-slider.slider-final {
     height: 100px;
 }
+@media all and (max-width:767px){
+    .custom-slider {
+        height: 740px;
+    }
+    .box-slider ul{
+        grid-template-columns: 1fr;
+    }
+    .box-slider ul li {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        text-align: left;
+    }
+    .box-slider ul li * {
+        text-align: left;
+    }
+}

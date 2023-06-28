@@ -28,7 +28,7 @@ export const ListaCandidatos =
         candidatos: [
           {
             id: 21,
-            img:"https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGdlbnRlJTIwb2ZpY2luYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+            img:"https://images.unsplash.com/photo-1548372290-8d01b6c8e78c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWFufGVufDB8MHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
             nombre: "Luis Rodriguez",
             partido: "Partido Renovador"
           },
@@ -40,7 +40,7 @@ export const ListaCandidatos =
           },
           {
             id: 23,
-            img:"https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z2VudGUlMjBvZmljaW5hfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+            img:"https://images.unsplash.com/photo-1604057883945-2b8b91ea1575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fHdvbWFufGVufDB8MHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
             nombre: "Antonella Miguez",
             partido: "Partido Socialista"
           }
@@ -63,7 +63,7 @@ export const ListaCandidatos =
           },
           {
             id: 33,
-            img:"https://images.unsplash.com/photo-1598257006463-7c64a5a538cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTd8fGdlbnRlJTIwb2ZpY2luYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+            img:"https://images.unsplash.com/photo-1604364721460-0cbc5866219d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTF8fHdvbWFufGVufDB8MHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
             nombre: "Andrea Socca",
             partido: "Partido Socialista"
           }

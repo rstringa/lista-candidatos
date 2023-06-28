@@ -2,3 +2,11 @@
     opacity: 1!important;
     transition: all 1s;
 }
+
+@media all and(max-width:767px){
+
+    .box-placeholder {
+        
+    }
+    
+}
