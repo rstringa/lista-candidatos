@@ -3,13 +3,14 @@ import SlidesCandidatos from './components/SlidesCandidatos';
 import { ListaCandidatos } from './data/dataCandidatos';
 import Header from './components/Header';
 import Footer from './components/Footer';
-// import './App.css';
+import './App.css';
 
 function App() {
   const [votacion, setVotacion] = useState([]);
   const [instancia, setInstancia] = useState(1);
   const [botonesHabilitados, setBotonesHabilitados] = useState(true);
   const [mensajeFinal, setMensajeFinal] = useState(false);
+  const [mensajeFinalVisible, setMensajeFinalVisible] = useState(false);
   const [boxFinalButtons, setBoxFinalButtons] = useState(true);
   const sliderRef = useRef(null);
 
@@ -42,12 +43,11 @@ function App() {
 
   function handleConfirmarVotacion() {
     setBotonesHabilitados(false);
+    setMensajeFinal(true)
+    setBoxFinalButtons(false)
     setTimeout(function () {
-      // setInstancia(instancia + 1);
-      // sliderRef.current.slickGoTo(instancia - 1);
-      setMensajeFinal(true)
-      setBoxFinalButtons(false)
-    }, 200);
+      setMensajeFinalVisible(true)
+    }, 500);
   }
 
   function handleVolver(instancia) {
@@ -60,7 +60,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className='container w-full max-w-6xl mx-auto mb-12 pb-12'>
+      <div className='container w-full max-w-6xl mx-auto pb-24'>
         <div className='box-volver mx-5 mt-5 h-[40px]'>
           {instancia > 1 && instancia <= 3 && (
 
@@ -137,7 +137,7 @@ function App() {
             {boxFinalButtons && (
             <div className='box-final-buttons text-center'>
               <button
-                className='btn btn-secondary btn-big font-bold mt-16 mx-5 bg-white'
+                className='btn btn-secondary btn-big font-bold mt-12 mx-5 bg-white'
                 onClick={handleCambiarVotacion} disabled={!botonesHabilitados}>
                 Cambiar Votación
               </button>
@@ -151,7 +151,7 @@ function App() {
             </div>
             )}
             { mensajeFinal && (
-              <div className='box-thanks px-5 py-16'>
+              <div className={ `mensaje-final opacity-0 box-thanks px-5 py-16 ${mensajeFinalVisible ? "is--visible" : ""} `}>
                 <h3 className='text-center text-4xl text-slate-700'>Gracias. Tu votación ha sido enviada.</h3>
               </div>
             )
