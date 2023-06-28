@@ -35,7 +35,7 @@ const SlidesCandidatos = ({ instancia, handleVotar, votacion, setVotacion, lista
                             {item.candidatos.map((candidato) => (
                                 <li 
                                 key={candidato.id}
-                                className='shadow-xl rounded-xl bg-white'
+                                className='shadow-xl rounded-xl bg-white '
                                 >
                                     {candidato.img ?
                                         <img

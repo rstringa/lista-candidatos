@@ -95,10 +95,12 @@ function App() {
         {/* {instancia >= 2 && ( */}
           <>
             <h2 className={`${instancia <= 3 ? "mt-20" : "mt-0"} titulo`}>Votación {instancia <= 3 ? "parcial" : "final"}</h2>
+            
             <ul className='grid grid-cols-3 gap-7 mx-5'>
+            
               {votacion.map((voto, index) => (
                 <li
-                  className='shadow-xl rounded-xl bg-slate-300'
+                  className='shadow-xl rounded-xl bg-slate-100'
                   key={index}>
                   {voto.candidatoImg ?
                     <img
@@ -110,12 +112,26 @@ function App() {
                     : <div className="no-image"></div>
                   }
                   <div className='body text-center px-5 py-7'>
-                    <h2 className='text-xl font-normal mb-5  bg-slate-200 rounded-full text-slate-700'>{voto.candidatoCargo}</h2>
+                    <h2 className='text-xl font-normal mx-auto mb-4  bg-slate-300 rounded-full text-slate-500 '>{voto.candidatoCargo}</h2>
                     <h3 className='text-2xl font-bold mb-1 text-slate-800'>{voto.candidatoNombre}</h3>
-                    <p className='text-[18px] font-normal text-slate-800'>{voto.candidatoPartido}</p>
+                    <p className='text-[18px] font-normal text-slate-600'>{voto.candidatoPartido}</p>
                   </div>
                 </li>
               ))}
+              {instancia == 1 && 
+              <li className="border-2 border-xl border-slate-300 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
+                <h3 className='text-3xl text-slate-400'>Presidente</h3></li>
+            }
+            {instancia <= 2 && 
+              <li className="border-2 border-xl border-slate-300 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
+                <h3 className='text-3xl text-slate-400'>Gobernador</h3>
+              </li>
+            }
+            {instancia <= 3 && 
+              <li className="border-2 border-xl border-slate-300 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
+                <h3 className='text-3xl text-slate-400'>Intendente</h3>
+              </li>
+            }
             </ul>
             {boxFinalButtons && (
             <div className='box-final-buttons text-center'>
