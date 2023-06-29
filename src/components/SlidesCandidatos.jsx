@@ -1,18 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './SlidesCandidatos.css';
 import BarraLateral from './BarraLateral';
 
-const SlidesCandidatos = ({ instancia, handleVotar, votacion, setVotacion, lista, sliderRef }) => {
+const SlidesCandidatos = ({ instancia, handleVotar, lista, sliderRef }) => {
     const [candidatoSeleccionado, setCandidatoSeleccionado] = useState({});
-    // const [barraLateralOpen, setBarraLateralOpen] = useState(false);
 
     const [sliderSettings] = useState({
         dots: false,
         arrows: false,
-        infinite: false,
+        infinite: false, 
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -31,18 +30,13 @@ const SlidesCandidatos = ({ instancia, handleVotar, votacion, setVotacion, lista
             propuesta
         }
         setCandidatoSeleccionado(candidatoElegido)
-        // setBarraLateralOpen(true)
         openBarraLateral()
     }
     function openBarraLateral() {
         const barraLateral = document.querySelector(".barra-lateral");
         barraLateral.classList.add("is--visible");
     }
-    // useEffect(() => {
-    //     setBarraLateralOpen(true);
-    // }, [barraLateralOpen]);
 
-    // console.log(barraLateralOpen)
     return (
         <>
             <Slider
@@ -102,13 +96,8 @@ const SlidesCandidatos = ({ instancia, handleVotar, votacion, setVotacion, lista
 
 
                 ))}
-                {/* <div key={4} className='box-slider'>
-                <h1 className='text-center text-4xl text-slate-700'>Gracias. Tu votación ha sido enviada.</h1>
-            </div> */}
             </Slider>
-
             <BarraLateral
-                // barraLateralOpen={barraLateralOpen}
                 candidatoSeleccionado={candidatoSeleccionado} />
         </>
     );

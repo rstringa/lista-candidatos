@@ -1,5 +1,6 @@
 import React from 'react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
+import { PrincipalContext } from './PrincipalProvider';
 import SlidesCandidatos from './components/SlidesCandidatos';
 import { ListaCandidatos } from './data/dataCandidatos';
 import { Header } from './components/Header';
@@ -8,8 +9,6 @@ import Footer from './components/Footer';
 import './App.css';
 
 function App() {
-  const [votacion, setVotacion] = useState([]);
-  const [instancia, setInstancia] = useState(1);
   const [botonesHabilitados, setBotonesHabilitados] = useState(true);
   const [mensajeFinal, setMensajeFinal] = useState(false);
   const [mensajeFinalVisible, setMensajeFinalVisible] = useState(false);
@@ -17,6 +16,9 @@ function App() {
   const [cambiarVotacion, setCambiarVotacion] = useState(false);
   const sliderRef = useRef(null);
   const headerRef = React.createRef();
+  
+  // From PrincipalProvider
+  const { instancia, setInstancia, votacion, setVotacion } = useContext(PrincipalContext);
 
 
   function handleVotar(instancia, candidatoId) {
@@ -55,6 +57,12 @@ function App() {
     setMensajeFinalVisible(false);
     setBoxFinalButtons(true);
     setBotonesHabilitados(true);
+    setTimeout(function(){
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    },500)
   }
 
 
@@ -105,116 +113,118 @@ function App() {
 
   return (
     <>
-      <Header ref={headerRef} />
-      <div className='container w-full max-w-6xl mx-auto pb-24 relative z-10'>
-        <div className='box-volver mx-5 mt-5 h-[40px]'>
-          {instancia > 1 && instancia <= 3 && (
+   
+        <Header ref={headerRef} />
+        <div className='container w-full max-w-6xl mx-auto pb-24 relative z-10'>
+          <div className='box-volver mx-5 mt-5 h-[40px]'>
+            {instancia > 1 && instancia <= 3 && (
 
-            <a
-              href="#"
-              className='btn btn-secondary flex content-center items-center w-fit capitalize mt-5 px-5'
-              onClick={(e) => {
-                e.preventDefault()
-                handleVolver(instancia - 1)
-              }}
-              title='Volver al paso anterior'
-            >
-              <svg
-                className='h-[18px] -ml-1 mr-1'
-                width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="rgb(71 85 105 / var(--tw-text-opacity))" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 12H3m0 0l8.5-8.5M3 12l8.5 8.5" fill="none"></path>
-              </svg>
-              <span className='ml-1'>Volver</span>
-            </a>
+              <a
+                href="#"
+                className='btn btn-secondary flex content-center items-center w-fit capitalize mt-5 px-5'
+                onClick={(e) => {
+                  e.preventDefault()
+                  handleVolver(instancia - 1)
+                }}
+                title='Volver al paso anterior'
+              >
+                <svg
+                  className='h-[18px] -ml-1 mr-1'
+                  width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="rgb(71 85 105 / var(--tw-text-opacity))" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 12H3m0 0l8.5-8.5M3 12l8.5 8.5" fill="none"></path>
+                </svg>
+                <span className='ml-1'>Volver</span>
+              </a>
 
-          )}
-        </div>
+            )}
+          </div>
 
-        <SlidesCandidatos
-          instancia={instancia}
-          handleVotar={handleVotar}
-          votacion={votacion}
-          setVotacion={setVotacion}
-          lista={ListaCandidatos} // Pasar la lista como prop
-          sliderRef={sliderRef} // Pasar el ref del slider como prop
-        />
+          <SlidesCandidatos
+            instancia={instancia}
+            handleVotar={handleVotar}
+            votacion={votacion}
+            setVotacion={setVotacion}
+            lista={ListaCandidatos} // Pasar la lista como prop
+            sliderRef={sliderRef} // Pasar el ref del slider como prop
+          />
 
-        {/* {instancia >= 2 && ( */}
-        <>
-          <h2 className={`${instancia <= 3 ? "mt-0 md:mt-20 " : "mt-0"} titulo-final`}>Votación {instancia <= 3 ? "Parcial" : "Final"}</h2>
+          {/* {instancia >= 2 && ( */}
+          <>
+            <h2 className={`${instancia <= 3 ? "mt-0 md:mt-20 " : "mt-0"} titulo-final`}>Votación {instancia <= 3 ? "Parcial" : "Final"}</h2>
 
-          <ul className='grid grid-cols-1 md:grid-cols-3 gap-7 mx-5'>
+            <ul className='grid grid-cols-1 md:grid-cols-3 gap-7 mx-5'>
 
-            {votacion.map((voto, index) => (
-              <li
-                className='shadow-xl rounded-xl bg-slate-100'
-                key={index}>
-                {voto.candidatoImg ?
-                  <img
-                    className='shadow-sm rounded-t-xl aspect-square  object-cover max-h-[250px]'
-                    src={voto.candidatoImg}
-                    alt={voto.candidatoNombre}
-                    loading="lazy"
-                    width={400} />
-                  : <div className="no-image"></div>
-                }
-                <div className='body text-center px-5 py-7'>
-                  <h2 className='text-xl font-normal mx-auto mb-4  bg-slate-300 rounded-full text-slate-500 '>{voto.candidatoCargo}</h2>
-                  <h3 className='text-2xl font-bold mb-1 text-slate-800'>{voto.candidatoNombre}</h3>
-                  <p className='text-[18px] font-normal text-slate-600'>{voto.candidatoPartido}</p>
-                </div>
-              </li>
-            ))}
-            {instancia == 1 &&
-              <li className="column-placeholder border-2 border-xl border-slate-400 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
-                <h3 className='text-3xl text-slate-400'>Presidente</h3></li>
-            }
-            {instancia <= 2 &&
-              <li className="column-placeholder border-2 border-xl border-slate-400 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
-                <h3 className='text-3xl text-slate-400'>Gobernador</h3>
-              </li>
-            }
-            {instancia <= 3 &&
-              <li className="column-placeholder border-2 border-xl border-slate-400 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
-                <h3 className='text-3xl text-slate-400'>Intendente</h3>
-              </li>
-            }
-          </ul>
-          {boxFinalButtons && (
+              {votacion.map((voto, index) => (
+                <li
+                  className='shadow-xl rounded-xl bg-slate-100'
+                  key={index}>
+                  {voto.candidatoImg ?
+                    <img
+                      className='shadow-sm rounded-t-xl aspect-square  object-cover max-h-[250px]'
+                      src={voto.candidatoImg}
+                      alt={voto.candidatoNombre}
+                      loading="lazy"
+                      width={400} />
+                    : <div className="no-image"></div>
+                  }
+                  <div className='body text-center px-5 py-7'>
+                    <h2 className='text-xl font-normal mx-auto mb-4  bg-slate-300 rounded-full text-slate-500 '>{voto.candidatoCargo}</h2>
+                    <h3 className='text-2xl font-bold mb-1 text-slate-800'>{voto.candidatoNombre}</h3>
+                    <p className='text-[18px] font-normal text-slate-600'>{voto.candidatoPartido}</p>
+                  </div>
+                </li>
+              ))}
+              {instancia == 1 &&
+                <li className="column-placeholder border-2 border-xl border-slate-400 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
+                  <h3 className='text-3xl text-slate-400'>Presidente</h3></li>
+              }
+              {instancia <= 2 &&
+                <li className="column-placeholder border-2 border-xl border-slate-400 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
+                  <h3 className='text-3xl text-slate-400'>Gobernador</h3>
+                </li>
+              }
+              {instancia <= 3 &&
+                <li className="column-placeholder border-2 border-xl border-slate-400 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
+                  <h3 className='text-3xl text-slate-400'>Intendente</h3>
+                </li>
+              }
+            </ul>
+            {boxFinalButtons && (
 
-            <div className='box-final-buttons text-center'>
+              <div className='box-final-buttons text-center'>
 
-              <button
-                className='btn btn-secondary btn-big font-bold mt-12 mx-5 bg-white'
-                onClick={handleCambiarVotacion} disabled={!botonesHabilitados}>
-                Cambiar Votación
-              </button>
-              {instancia >= 4 && (
                 <button
-                  className='btn btn-big mt-9 mx-5'
-                  onClick={handleConfirmarVotacion} >
-                  Confirmar Votación
+                  className='btn btn-secondary btn-big font-bold mt-12 mx-5 bg-white'
+                  onClick={handleCambiarVotacion} disabled={!botonesHabilitados}>
+                  Cambiar Votación
                 </button>
-              )}
-            </div>
-          )}
+                {instancia >= 4 && (
+                  <button
+                    className='btn btn-big mt-9 mx-5'
+                    onClick={handleConfirmarVotacion} >
+                    Confirmar Votación
+                  </button>
+                )}
+              </div>
+            )}
 
-          {mensajeFinal && (
-            <div className={`mensaje-final opacity-0 box-thanks text-center px-5 py-16 ${mensajeFinalVisible ? "is--visible" : ""} `}>
-              <h3 className='text-center text-4xl text-slate-700'>Gracias. Tu votación ha sido enviada.</h3>
-              <button
-                className='btn btn-secondary btn-big font-bold mt-12 mx-auto'
-                onClick={handleComenzarVotacion}>
-                Comenzar de nuevo
-              </button>
-            </div>
-          )
-          }
-        </>
-        {/* )} */}
-      </div>
-      <div className="text-[150px] md:text-[350px] leading-none text-center text-slate-300 opacity-20 absolute bottom-4 md:bottom-0  w-full z-0">2023</div>
-      <Footer />
+            {mensajeFinal && (
+              <div className={`mensaje-final opacity-0 box-thanks text-center px-5 py-16 ${mensajeFinalVisible ? "is--visible" : ""} `}>
+                <h3 className='text-center text-4xl text-slate-700'>Gracias. Tu votación ha sido enviada.</h3>
+                <button
+                  className='btn btn-secondary btn-big font-bold mt-12 mx-auto'
+                  onClick={handleComenzarVotacion}>
+                  Comenzar de nuevo
+                </button>
+              </div>
+            )
+            }
+          </>
+          {/* )} */}
+        </div>
+        <div className="text-[150px] md:text-[350px] leading-none text-center text-slate-300 opacity-20 absolute bottom-4 md:bottom-0  w-full z-0">2023</div>
+        <Footer />
+ 
     </>
   );
 }
