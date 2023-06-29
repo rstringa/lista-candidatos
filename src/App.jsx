@@ -4,7 +4,7 @@ import SlidesCandidatos from './components/SlidesCandidatos';
 import { ListaCandidatos } from './data/dataCandidatos';
 import { Header } from './components/Header';
 import Footer from './components/Footer';
-import BarraLateral from './components/BarraLateral';
+
 import './App.css';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
   const [boxFinalButtons, setBoxFinalButtons] = useState(true);
   const sliderRef = useRef(null);
   const headerRef = React.createRef();
+
 
   function handleVotar(instancia, candidatoId) {
     const candidatoSeleccionado = ListaCandidatos[instancia].candidatos.find(
@@ -90,6 +91,8 @@ function App() {
       setBotonesHabilitados(true);
     }
   }, [instancia]);
+
+
 
   return (
     <>
@@ -201,7 +204,7 @@ function App() {
         </>
         {/* )} */}
       </div>
-      <BarraLateral />
+    
       <Footer />
     </>
   );

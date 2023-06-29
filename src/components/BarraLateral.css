@@ -1,0 +1,7 @@
+.barra-lateral {
+    left:-100%;
+    transition: all 1s;
+}
+.barra-lateral.is--visible {
+    left:0
+}
