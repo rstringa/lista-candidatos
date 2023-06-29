@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { PrincipalContext } from '../PrincipalProvider';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './SlidesCandidatos.css';
-import BarraLateral from './BarraLateral';
+// import BarraLateral from './BarraLateral';
 
 const SlidesCandidatos = ({ instancia, handleVotar, lista, sliderRef }) => {
-    const [candidatoSeleccionado, setCandidatoSeleccionado] = useState({});
-
+    
+    const { candidatoDetalle, setCandidatoDetalle } = useContext(PrincipalContext);
     const [sliderSettings] = useState({
         dots: false,
         arrows: false,
@@ -29,7 +30,7 @@ const SlidesCandidatos = ({ instancia, handleVotar, lista, sliderRef }) => {
             partido,
             propuesta
         }
-        setCandidatoSeleccionado(candidatoElegido)
+        setCandidatoDetalle(candidatoElegido)
         openBarraLateral()
     }
     function openBarraLateral() {
@@ -97,8 +98,7 @@ const SlidesCandidatos = ({ instancia, handleVotar, lista, sliderRef }) => {
 
                 ))}
             </Slider>
-            <BarraLateral
-                candidatoSeleccionado={candidatoSeleccionado} />
+
         </>
     );
 };

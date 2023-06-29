@@ -1,24 +1,14 @@
-// import { useState, useEffect } from 'react';
 import "./BarraLateral.css"
 
-const BarraLateral = ({barraLateralOpen, candidatoSeleccionado }) => {
-//   const verDetalle = candidatoSeleccionado.verDetalleCandidato;
-//   const [open, setOpen] = useState(barraLateralOpen);  
-//   console.log(open)
+const BarraLateral = ({candidatoSeleccionado }) => {
 
- function handleClose(){
+function handleClose(){
     const barraLateral = document.querySelector(".barra-lateral");
     barraLateral.classList.remove("is--visible");
  }
- 
-//  useEffect(() => {
-//     setOpen(barraLateralOpen);
-//   }, [barraLateralOpen]);
   
-  
-  return (
+return (
     <>
-    {/* { open && ( */}
         <div className="barra-lateral flex flex-col fixed z-10 top-0  h-screen  w-[75%] md:w-[350px] bg-slate-50 p-5 md:p-7 shadow-2xl">
             <a href="#" 
             className='self-end text-2xl mb-2 text-slate-600'
@@ -33,8 +23,6 @@ const BarraLateral = ({barraLateralOpen, candidatoSeleccionado }) => {
             <p className='text-[16px] font-normal  mb-2 text-slate-500'>{candidatoSeleccionado.propuesta}</p>
             </div>
         </div>
-    
-    {/* )} */}
     </>
   )
 }
