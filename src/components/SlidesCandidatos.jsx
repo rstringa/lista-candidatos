@@ -7,7 +7,7 @@ import BarraLateral from './BarraLateral';
 
 const SlidesCandidatos = ({ instancia, handleVotar, votacion, setVotacion, lista, sliderRef }) => {
     const [candidatoSeleccionado, setCandidatoSeleccionado] = useState({});
-    const [barraLateralOpen, setBarraLateralOpen] = useState(false);
+    // const [barraLateralOpen, setBarraLateralOpen] = useState(false);
 
     const [sliderSettings] = useState({
         dots: false,
@@ -42,7 +42,7 @@ const SlidesCandidatos = ({ instancia, handleVotar, votacion, setVotacion, lista
     //     setBarraLateralOpen(true);
     // }, [barraLateralOpen]);
 
-    console.log(barraLateralOpen)
+    // console.log(barraLateralOpen)
     return (
         <>
             <Slider
