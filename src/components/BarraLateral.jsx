@@ -29,7 +29,7 @@ const BarraLateral = ({barraLateralOpen, candidatoSeleccionado }) => {
                 src={candidatoSeleccionado.img} alt={candidatoSeleccionado.nombre} />
             <h3 className='text-[25px] font-bold mt-3 mb-0 text-slate-700'>{candidatoSeleccionado.nombre}</h3>
             <h4 className='text-[18px] font-normal  mb-5 text-slate-500'>{candidatoSeleccionado.partido}</h4>
-            <h5 className='text-[16px] font-bold text-slate-500 mb-1'>Biografía</h5>
+            <h5 className='text-[16px] font-bold text-slate-500 mb-1'>Actividad</h5>
             <p className='text-[16px] font-normal  mb-2 text-slate-500'>{candidatoSeleccionado.propuesta}</p>
             </div>
         </div>

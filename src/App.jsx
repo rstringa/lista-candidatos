@@ -132,7 +132,7 @@ function App() {
 
         {/* {instancia >= 2 && ( */}
         <>
-          <h2 className={`${instancia <= 3 ? "mt-20" : "mt-0"} titulo`}>Votación {instancia <= 3 ? "parcial" : "final"}</h2>
+          <h2 className={`${instancia <= 3 ? "mt-20" : "mt-0"} titulo-final`}>Votación {instancia <= 3 ? "Parcial" : "Final"}</h2>
 
           <ul className='grid grid-cols-1 md:grid-cols-3 gap-7 mx-5'>
 
@@ -157,16 +157,16 @@ function App() {
               </li>
             ))}
             {instancia == 1 &&
-              <li className="column-placeholder border-2 border-xl border-slate-300 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
+              <li className="column-placeholder border-2 border-xl border-slate-400 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
                 <h3 className='text-3xl text-slate-400'>Presidente</h3></li>
             }
             {instancia <= 2 &&
-              <li className="column-placeholder border-2 border-xl border-slate-300 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
+              <li className="column-placeholder border-2 border-xl border-slate-400 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
                 <h3 className='text-3xl text-slate-400'>Gobernador</h3>
               </li>
             }
             {instancia <= 3 &&
-              <li className="column-placeholder border-2 border-xl border-slate-300 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
+              <li className="column-placeholder border-2 border-xl border-slate-400 border-dashed rounded-xl h-[420px] flex place-items-center place-content-center">
                 <h3 className='text-3xl text-slate-400'>Intendente</h3>
               </li>
             }
