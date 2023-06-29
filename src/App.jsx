@@ -14,6 +14,7 @@ function App() {
   const [mensajeFinal, setMensajeFinal] = useState(false);
   const [mensajeFinalVisible, setMensajeFinalVisible] = useState(false);
   const [boxFinalButtons, setBoxFinalButtons] = useState(true);
+  const [cambiarVotacion, setCambiarVotacion] = useState(false);
   const sliderRef = useRef(null);
   const headerRef = React.createRef();
 
@@ -37,6 +38,13 @@ function App() {
       sliderRef.current.slickGoTo(instancia);
     }
     setInstancia(instancia + 1);
+
+    setTimeout(function(){
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    },500)
   }
 
   function handleComenzarVotacion() {
@@ -57,15 +65,16 @@ function App() {
     setMensajeFinal(false);
     setMensajeFinalVisible(false);
     setBoxFinalButtons(true);
-    console.log(headerRef)
-    if (headerRef.current) {
-
-      headerRef.current.scrollIntoView({
-        behavior: 'smooth', // Habilita el desplazamiento animado
-        block: 'start' // Desplázate hacia la parte superior del elemento
+    setCambiarVotacion(!cambiarVotacion);
+    setTimeout(function(){
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
       });
-    }
+    },500)
+
   }
+
 
   function handleConfirmarVotacion() {
     setMensajeFinal(true)
@@ -132,7 +141,7 @@ function App() {
 
         {/* {instancia >= 2 && ( */}
         <>
-          <h2 className={`${instancia <= 3 ? "mt-20" : "mt-0"} titulo-final`}>Votación {instancia <= 3 ? "Parcial" : "Final"}</h2>
+          <h2 className={`${instancia <= 3 ? "mt-0 md:mt-20 " : "mt-0"} titulo-final`}>Votación {instancia <= 3 ? "Parcial" : "Final"}</h2>
 
           <ul className='grid grid-cols-1 md:grid-cols-3 gap-7 mx-5'>
 

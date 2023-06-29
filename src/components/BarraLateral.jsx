@@ -19,7 +19,7 @@ const BarraLateral = ({barraLateralOpen, candidatoSeleccionado }) => {
   return (
     <>
     {/* { open && ( */}
-        <div className="barra-lateral flex flex-col fixed z-10 top-0  h-screen  w-[75%] md:w-[300px] bg-slate-50 p-5 md:p-7 shadow-2xl">
+        <div className="barra-lateral flex flex-col fixed z-10 top-0  h-screen  w-[75%] md:w-[350px] bg-slate-50 p-5 md:p-7 shadow-2xl">
             <a href="#" 
             className='self-end text-2xl mb-2 text-slate-600'
             onClick={ (e) => {e.preventDefault(); handleClose()} }>X</a>

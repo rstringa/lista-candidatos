@@ -1,5 +1,5 @@
 .custom-slider {
-    height: 540px;
+    height: 600px;
     transition: all 1s;
     opacity: 1;
 }
@@ -14,7 +14,7 @@
 }
 @media all and (max-width:767px){
     .custom-slider {
-        height: 740px;
+        height: 880px;
     }
     .box-slider ul{
         grid-template-columns: 1fr;
