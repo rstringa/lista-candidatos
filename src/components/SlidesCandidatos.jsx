@@ -83,13 +83,13 @@ const SlidesCandidatos = ({ instancia, handleVotar, votacion, setVotacion, lista
                                             <span>
                                                 <svg 
                                                 className='w-[21px] mr-1 mb-2'
-                                                width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                width="24" height="24" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
    <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3"></path>
                                             </svg></span>
                                             <span>Actividad</span></a>
-                                        <h3 className='text-2xl md:text-3xl font-bold mb-1 text-slate-800'>{candidato.nombre}</h3>
+                                        <h3 className=' text-2xl md:text-3xl font-bold mb-1 text-slate-800'>{candidato.nombre}</h3>
                                         <p className='text-md md:text-xl font-normal text-slate-500'>{candidato.partido}</p>
                                         <button
                                             className='btn mt-7 mb-0 md:mb-3 '

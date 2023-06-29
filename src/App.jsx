@@ -97,7 +97,7 @@ function App() {
   return (
     <>
       <Header ref={headerRef} />
-      <div className='container w-full max-w-6xl mx-auto pb-24'>
+      <div className='container w-full max-w-6xl mx-auto pb-24 relative z-10'>
         <div className='box-volver mx-5 mt-5 h-[40px]'>
           {instancia > 1 && instancia <= 3 && (
 
@@ -204,7 +204,7 @@ function App() {
         </>
         {/* )} */}
       </div>
-    
+      <div className="text-[150px] md:text-[350px] leading-none text-center text-slate-300 opacity-20 absolute bottom-4 md:bottom-0  w-full z-0">2023</div>
       <Footer />
     </>
   );
