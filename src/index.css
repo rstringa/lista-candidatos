@@ -19,7 +19,10 @@
     }
     .btn[disabled]{
         @apply
-        hover:shadow-none
+        hover:shadow-none 
+    }
+    .btn.btn-secondary[disabled] {
+        @apply text-slate-500
     } 
     .titulo {
         @apply
