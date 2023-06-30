@@ -1,0 +1,4 @@
+.mensaje-final.is--visible {
+    opacity: 1!important;
+    transition: all 1s;
+}
